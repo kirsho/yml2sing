@@ -1,0 +1,11 @@
+name: ngs2
+channels:
+  - bioconda
+  - r
+  - defaults
+  - conda-forge
+  - https://conda.anaconda.org/dranew
+dependencies:
+  - samtools=1.9=h8571acd_11
+prefix: /home/olivier/anaconda3/envs/ngs2
+
