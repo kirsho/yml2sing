@@ -12,7 +12,7 @@ From: continuumio/miniconda3
 # load the definition files
 
 # If .yml
-    	ngs2.yml
+    	ngs2.yml	## change .yml name
 
 	Singularity	# definition file
 
@@ -25,7 +25,7 @@ From: continuumio/miniconda3
 	PATH=/opt/conda/envs/${defile%%.yml}/bin:$PATH
 	
 # If Conda install
-	#defname=ngs3 	
+	#defname=ngs3 	## change name
 	#PATH=/opt/conda/envs/$defname/bin:$PATH
 
 %post
