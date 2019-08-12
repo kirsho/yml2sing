@@ -32,10 +32,10 @@ From: continuumio/miniconda3
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     	
 	echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
-	/opt/conda/bin/conda config --add channels conda-forge
+	/opt/conda/bin/conda config --add channels defaults
 	/opt/conda/bin/conda config --add channels bioconda
-	/opt/conda/bin/conda config --add channels r
-	/opt/conda/bin/conda config --add channels https://conda.anaconda.org/dranew
+	/opt/conda/bin/conda config --add channels conda-forge
+
 
 # If .yml
 	defile="$(ls *.yml)"
