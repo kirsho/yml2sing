@@ -40,7 +40,7 @@ From: continuumio/miniconda3
 # If .yml
 	defile="$(ls *.yml)"
    	echo "source activate ${defile%%.yml}" > ~/.bashrc
-    	/opt/conda/bin/conda env create -f $defile
+    	/opt/conda/bin/conda env create -n ${defile%%.yml} -f $defile
 	/opt/conda/bin/conda clean --tarballs
 	mkdir -p /home/setupfile
 	cp $defile Singularity /home/setupfile
