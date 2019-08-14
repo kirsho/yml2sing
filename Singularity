@@ -25,7 +25,7 @@ From: continuumio/miniconda3
 	PATH=/opt/conda/envs/${defile%%.yml}/bin:$PATH
 	
 # If Conda install
-	#defname=ngs3 	## change name
+	#defname=xxx 	## change name
 	#PATH=/opt/conda/envs/$defname/bin:$PATH
 
 %post
@@ -48,7 +48,7 @@ From: continuumio/miniconda3
 	/opt/conda/bin/conda list -n ${defile%%.yml} > ${defile%%.yml}_installed_packages.md
 
 # If Conda install
-	#defname=ngs3
+	#defname=xxx 	## change name
    	#echo "source activate $defname" > ~/.bashrc
 	#/opt/conda/bin/conda create -n $defname python==3.7
 	#/opt/conda/bin/conda install -n $defname rsem salmon kallisto
