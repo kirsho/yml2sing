@@ -9,7 +9,8 @@
 
 # download my definition file for singularity
 # For easy push in shubn the definition file is named Singularity
-wget https://raw.githubusercontent.com/kirsho/Singularity/master/Singularity
+#wget https://raw.githubusercontent.com/kirsho/Singularity/master/Singularity
+wget https://raw.githubusercontent.com/kirsho/yml2sing/master/Singularity
 
 # extract yml file name from work directory
 defile="$(ls *.y*ml)"
