@@ -5,28 +5,17 @@ From: continuumio/miniconda3
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Set labels
     Maintainer olivier.kirsh@u-paris.fr					
-    Version v1.1 20190704
+    Version v1.2 20200724
 
 %files
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # load the definition files
 
 # If .yml
-    	ngs2.yml	## change .yml name
+    	env-name.yml	## change .yml name
 
-	Singularity	# definition file
+#	Singularity	# definition file
 
-%environment
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Set global environment variables for anything run within the container
-
-# If .yml
-	defile="$(ls *.yml)"
-	PATH=/opt/conda/envs/${defile%%.yml}/bin:$PATH
-	
-# If Conda install
-	#defname=xxx 	## change name
-	#PATH=/opt/conda/envs/$defname/bin:$PATH
 
 %post
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -42,24 +31,23 @@ From: continuumio/miniconda3
    	echo "source activate ${defile%%.yml}" > ~/.bashrc
     	/opt/conda/bin/conda env create -n ${defile%%.yml} -f $defile
 	/opt/conda/bin/conda clean --tarballs
-	mkdir -p /home/setupfile
-	cp $defile Singularity /home/setupfile
-	cd /home/setupfile
-	/opt/conda/bin/conda list -n ${defile%%.yml} > ${defile%%.yml}_installed_packages.md
+#	mkdir -p /home/setupfile
+#	cp $defile Singularity /home/setupfile
+#	cd /home/setupfile
+#	/opt/conda/bin/conda list -n ${defile%%.yml} > ${defile%%.yml}_installed_packages.md
 
-# If Conda install
-	#defname=xxx 	## change name
-   	#echo "source activate $defname" > ~/.bashrc
-	#/opt/conda/bin/conda create -n $defname python==3.7
-	#/opt/conda/bin/conda install -n $defname rsem salmon kallisto
-	#/opt/conda/bin/conda clean --tarballs
-	#mkdir -p /home/setupfile
-	#cp Singularity /home/setupfile
-	#cd /home/setupfile
-	#/opt/conda/bin/conda list -n $defname > $defname_installed_packages.md	
+
+%environment
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# set Conda in the PATH
+	echo "conda activate"
+	defile="$(ls *.y*ml)"
+	export PATH=/opt/conda/envs/${defile%%.yml}/bin:$PATH						## Set environment name
+
 	
-
+	
 %runscript
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # This executes commands
-    	exec "$@"
+	echo "image startup"
+    	exec echo "$@"
