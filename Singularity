@@ -34,14 +34,14 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 
 # Create conda env
 	cd /setupfile/parentyml
-	defile="$(ls *.y*ml)"
-    	/opt/conda/bin/conda env create -n ${defile%%.y*ml} -f $defile
+	DEFILE="$(ls *.y*ml)"
+    	/opt/conda/bin/conda env create -n ${DEFILE%%.y*ml} -f $DEFILE
 	/opt/conda/bin/conda clean --tarballs
 	
 # Export FAIR Files
 	cd /setupfile							
-	/opt/conda/bin/conda list -n ${defile%%.y*ml} > ${defile%%.y*ml}_installed_packages.md
-	/opt/conda/bin/conda env export --no-build -n ${defile%%.y*ml} > ${defile%%.y*ml}.yaml
+	/opt/conda/bin/conda list -n ${DEFILE%%.y*ml} > ${DEFILE%%.y*ml}_installed_packages.md
+	/opt/conda/bin/conda env export --no-build -n ${DEFILE%%.y*ml} > ${DEFILE%%.y*ml}.yaml
 	# Original yml file used to create this image is in /setupfile/parentyml/
 
 %environment
@@ -54,3 +54,4 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 # This executes commands
 	echo "image startup"
     	exec echo "$@"
+
