@@ -11,7 +11,7 @@
 # date : 20200727
 
 # Check if a Singularity file is already there
-[ -f Singularity* ] && \
+[[ -f Singularity ]] && \
 	echo "A singularity file exist in your folder and is removed" && \
 	rm Singularity* || \
 	echo "let's go" && \
