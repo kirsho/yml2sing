@@ -62,7 +62,7 @@ env-name.yml /setupfile/env-name.yml
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # set Conda in the PATH
 	echo "conda activate"
-	defile="$(ls *.y*ml)"
+#	defile="$(ls *.y*ml)"
 	export PATH=/opt/conda/envs/${defile%%.yml}/bin:$PATH						## Set environment name
 
 	
