@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 
 # This script execute a singularity build command to create a sing image from a yml file
 # 
@@ -10,8 +10,11 @@
 # contact : Olivier Kirsh <olivier.kirsh@u-paris.fr>
 # date : 20200727
 
-# folder cleanup
-rm Singularity*  && \
+# Check if a Singularity file is already there
+[ -f Singularity* ] && \
+	echo "A singularity file exist in your folder and is removed" && \
+	rm Singularity* || \
+	echo "let's go" && \
 
 # Download definition file
 wget https://raw.githubusercontent.com/kirsho/yml2sing/master/Singularity  && \
