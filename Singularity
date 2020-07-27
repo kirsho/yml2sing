@@ -49,11 +49,12 @@ env-name.yml /setupfile/env-name.yml
 
 
 # If .yml
+	cd /setupfile
 	defile="$(ls *.y*ml)"
     	/opt/conda/bin/conda env create -n ${defile%%.y*ml} -f $defile
 	/opt/conda/bin/conda clean --tarballs
 	
-	cd /setupfile							## FAIR infos
+								## FAIR infos
 	/opt/conda/bin/conda list -n ${defile%%.yml} > ${defile%%.yml}_installed_packages.md
 	/opt/conda/bin/conda env export --no-build -n ${defile%%.yml} > $defile-image.yml
 
