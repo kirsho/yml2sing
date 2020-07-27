@@ -20,7 +20,7 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 mkdir -p ${SINGULARITY_ROOTFS}/setupfile
-
+defile="$(ls *.y*ml)"
 
 %files
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,7 +49,7 @@ env-name.yml /setupfile/env-name.yml
 
 
 # If .yml
-	defile="$(ls *.y*ml)"
+	#defile="$(ls *.y*ml)"
     	/opt/conda/bin/conda env create -n ${defile%%.y*ml} -f $defile
 	/opt/conda/bin/conda clean --tarballs
 	
