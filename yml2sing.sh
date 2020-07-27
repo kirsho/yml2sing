@@ -17,12 +17,12 @@ rm Singularity*  && \
 wget https://raw.githubusercontent.com/kirsho/yml2sing/master/Singularity  && \
 
 # extract yml file name (rename it to change 
-defile="$(ls *.y*ml)"  && \
+DEFILE="$(ls *.y*ml)"  && \
 
 # mofify the definition file (Singularity)
-sed -i "s/env-name.yml/${defile}/g" Singularity  && \
+sed -i "s/env-name.yml/${DEFILE}/g" Singularity  && \
 
-sed -i "s/envname/${defile%%.y*ml}/g" Singularity  && \
+sed -i "s/envname/${DEFILE%%.y*ml}/g" Singularity  && \
 
 # Build the image
 sudo singularity build $1.simg Singularity
