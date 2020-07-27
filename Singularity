@@ -27,7 +27,7 @@ mkdir -p ${SINGULARITY_ROOTFS}/setupfile
 
 Singularity /setupfile/Singularity
 
-env-name.yml /setupfile/env-name.yml	## read .yml name
+env-name.yml /setupfile/env-name.yml
 
 
 %post
