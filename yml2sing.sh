@@ -10,10 +10,6 @@
 # contact : Olivier Kirsh <olivier.kirsh@u-paris.fr>
 # date : 20200727
 
-# download my definition file for singularity
-# For easy push in shub the definition file is named Singularity
-#wget https://raw.githubusercontent.com/kirsho/Singularity/master/Singularity
-
 # folder cleanup
 rm Singularity*  && \
 
