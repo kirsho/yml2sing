@@ -1,40 +1,61 @@
 Bootstrap: docker
 From: continuumio/miniconda3
 
+
+%help
+
+This file is a singularity definition file to create simg with conda
+It starts with a docker image of miniconda continuumio/miniconda3
+It allows direct creation of the env by specifying which package with a .yml file with the yml2sing.sh script
+based on documentation https://singularity.lbl.gov/docs-recipes
+
 %labels
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Set labels
     Maintainer olivier.kirsh@u-paris.fr					
-    Version v1.2 20200724
+    Version v1.2 20200728
+
+
+%setup
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+mkdir -p ${SINGULARITY_ROOTFS}/setupfile
+
 
 %files
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# load the definition files
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# If .yml
-    	env-name.yml	## change .yml name
+Singularity /setupfile/Singularity
 
-#	Singularity	# definition file
+env-name.yml	## read .yml name
 
 
 %post
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     	
-	echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
+# Edit .bashrc to run conda    	
+	echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc		## Enable conda for the current user
+									## Better than $ echo "conda activate" >> ~/.bashrc
+									## or $ export PATH="/opt/miniconda3/bin:$PATH" (not recommanded)
+
+# Set conda channels 
 	/opt/conda/bin/conda config --add channels defaults
 	/opt/conda/bin/conda config --add channels bioconda
 	/opt/conda/bin/conda config --add channels conda-forge
 
 
+# Update conda
+	/opt/conda/bin/conda update -n base conda  			## Optionnal. Or specify version
+
+
 # If .yml
-	defile="$(ls *.yml)"
-   	echo "source activate ${defile%%.yml}" > ~/.bashrc
-    	/opt/conda/bin/conda env create -n ${defile%%.yml} -f $defile
+	defile="$(ls *.y*ml)"
+    	/opt/conda/bin/conda env create -n ${defile%%.y*ml} -f $defile
 	/opt/conda/bin/conda clean --tarballs
-#	mkdir -p /home/setupfile
-#	cp $defile Singularity /home/setupfile
-#	cd /home/setupfile
-#	/opt/conda/bin/conda list -n ${defile%%.yml} > ${defile%%.yml}_installed_packages.md
+	
+	cd /setupfile							## FAIR infos
+	/opt/conda/bin/conda list -n ${defile%%.yml} > ${defile%%.yml}_installed_packages.md
+	/opt/conda/bin/conda env export --no-build -n ${defile%%.yml} > $defile-image.yml
 
 
 %environment
