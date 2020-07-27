@@ -5,18 +5,21 @@
 # Usage : create a folder containing a yml file and type un a terminal $ yml2sing.sh <image-name> 
 # read my documentation about singularity https://github.com/kirsho/Singularity/blob/master/Intro2Singularity.md
 # contact : Olivier Kirsh <olivier.kirsh@u-paris.fr>
-# date : 20200724
+# date : 20200728
 
 # download my definition file for singularity
 # For easy push in shubn the definition file is named Singularity
 #wget https://raw.githubusercontent.com/kirsho/Singularity/master/Singularity
-wget https://raw.githubusercontent.com/kirsho/yml2sing/master/Singularity
+
+rm Singularity*  && \
+
+wget https://raw.githubusercontent.com/kirsho/yml2sing/master/Singularity  && \
 
 # extract yml file name from work directory
-defile="$(ls *.y*ml)"
+defile="$(ls *.y*ml)"  && \
 
 # mofify the definition file (Singularity)
-sed -i "s/env-name.yml/${defile}/g" Singularity
+sed -i "s/env-name.yml/${defile}/g" Singularity  && \
 
 # Build the image
-sudo singularity build $1.simg Singularity
+sudo singularity build $1.simg Singularity  && \
