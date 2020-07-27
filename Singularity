@@ -57,7 +57,12 @@ env-name.yml /setupfile/env-name.yml
 								## FAIR infos
 	/opt/conda/bin/conda list -n ${defile%%.yml} > ${defile%%.yml}_installed_packages.md
 	/opt/conda/bin/conda env export --no-build -n ${defile%%.yml} > $defile-image.yml
-
+	
+# set Conda in the PATH
+	echo "PATH definition"
+#	defile="$(ls *.y*ml)"
+	export PATH=/opt/conda/envs/${defile%%.yml}/bin:$PATH						## Set environment name
+	
 
 %environment
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
