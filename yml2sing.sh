@@ -22,4 +22,4 @@ defile="$(ls *.y*ml)"  && \
 sed -i "s/env-name.yml/${defile}/g" Singularity  && \
 
 # Build the image
-sudo singularity build $1.simg Singularity  && \
+sudo singularity build $1.simg Singularity
