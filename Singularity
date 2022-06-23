@@ -32,11 +32,14 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 # Update conda
 	/opt/conda/bin/conda update -n base conda  			## Optionnal. Or specify version
 
+# Install mamba
+	/opt/conda/bin/conda install -c conda-forge mamba  		
+	
 # Create conda env
 	cd /setupfile/parentyml
 	DEFILE="$(ls *.y*ml)"
-    	/opt/conda/bin/conda env create -n ${DEFILE%%.y*ml} -f $DEFILE
-	/opt/conda/bin/conda clean --tarballs
+    	/opt/conda/bin/mamba env create -n ${DEFILE%%.y*ml} -f $DEFILE
+	/opt/conda/bin/mamba clean --yes --tarballs
 	
 # Export FAIR Files
 	cd /setupfile							
