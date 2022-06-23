@@ -17,7 +17,7 @@
 	echo "let's go" && \
 
 # Download definition file
-wget https://raw.githubusercontent.com/kirsho/yml2sing/master/Singularity  && \
+wget https://raw.githubusercontent.com/kirsho/yml2sing/master/Singularity  && \  #20220623 replace conda create by mamba create
 
 # extract yml file name (rename it to change 
 DEFILE="$(ls *.y*ml)"  && \
