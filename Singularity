@@ -36,8 +36,8 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 	/opt/conda/bin/conda install -c conda-forge mamba  	
 	
 # Install rename for magali
-	apt-get update && apt-get -y upgrade
-	apt-get -y install rename
+	apt-get -y update && apt-get -y upgrade
+	apt-get --assume-yes install rename
 	
 # Create conda env
 	cd /setupfile/parentyml
