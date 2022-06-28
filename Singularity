@@ -35,8 +35,10 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 # Install mamba
 	/opt/conda/bin/conda install -c conda-forge mamba  	
 	
-# Install rename for magali	
-	sudo apt install rename
+# Install rename for magali
+	apt-get update
+	apt-get upgrade
+	apt-get install rename
 	
 # Create conda env
 	cd /setupfile/parentyml
