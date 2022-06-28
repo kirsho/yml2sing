@@ -14,7 +14,7 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Set labels
     	Maintainer olivier.kirsh@u-paris.fr					
-    	Version v1.4 20220623
+    	Version v1.4 20220628
 
 %files
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,7 +33,10 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 	/opt/conda/bin/conda update -n base conda  			## Optionnal. Or specify version
 
 # Install mamba
-	/opt/conda/bin/conda install -c conda-forge mamba  		
+	/opt/conda/bin/conda install -c conda-forge mamba  	
+	
+# Install rename for magali	
+	sudo apt install rename
 	
 # Create conda env
 	cd /setupfile/parentyml
